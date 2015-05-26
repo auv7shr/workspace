@@ -1,0 +1,101 @@
+package com.androidexample.broadcastreceiver;
+
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
+import android.util.Log;
+
+public class IncomingSms extends BroadcastReceiver {
+	// mydb Object
+	private DBHelper mydb;
+	private Integer sid;
+	private Integer slot;
+	private String message;
+	private String date;
+	private Integer synced;
+
+	// Get the object of SmsManager
+	final SmsManager sms = SmsManager.getDefault();
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		mydb = new DBHelper(context);
+		// Retrieves a map of extended data from the intent.
+		final Bundle bundle = intent.getExtras();
+
+		try {
+
+			if (bundle != null) {
+				TelephonyInfo telephonyInfo = TelephonyInfo.getInstance(context);
+
+		        boolean isSIM1Ready = telephonyInfo.isSIM1Ready();
+		        boolean isSIM2Ready = telephonyInfo.isSIM2Ready();
+
+		        boolean isDualSIM = telephonyInfo.isDualSIM();
+				if(isDualSIM == true && isSIM1Ready == true && isSIM2Ready == true)
+					smslog(context);
+				else if(isDualSIM == true && isSIM2Ready == true && isSIM1Ready == false)
+					singlesmslog(context, bundle, 2);
+				else
+					singlesmslog(context, bundle, 1);
+					
+				
+			} // bundle is null
+
+		} catch (Exception e) {
+			Log.e("SmsReceiver", "Exception smsReceiver" + e);
+
+		}
+	}
+
+	public void smslog(Context context) {
+		// Create Inbox box URI
+		Uri inboxURI = Uri.parse("content://sms/inbox");
+
+		// List required columns
+		String[] reqCols = new String[] { "_id", "body", "date", "sim_id", "read", "address" };
+		// Where Condition
+		String cond = "read = 0";
+
+		// Get Content Resolver object, which will deal with Content
+		// Provider
+		ContentResolver cr = context.getContentResolver();
+		Cursor c = cr.query(inboxURI, reqCols, cond, null, null);
+		c.moveToFirst();
+		while (c.isAfterLast() == false) {
+			sid = Integer.parseInt(c.getString(0));
+			slot = Integer.parseInt(c.getString(3));
+			message = c.getString(1);
+			date = c.getString(2);
+			synced = 0;
+			String senderNum = c.getString(5);
+			mydb.insertSms(sid, slot, message, date, synced, senderNum);
+			c.moveToNext();
+		}
+		c.close();
+	}
+	
+	public void singlesmslog(Context context, Bundle bundle, Integer slot){
+		
+		  final Object[] pdusObj = (Object[]) bundle.get("pdus");
+		  
+		  for (int i = 0; i < pdusObj.length; i++) {
+		  
+		  SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
+		  String phoneNumber = currentMessage.getDisplayOriginatingAddress();
+		  
+		  String senderNum = phoneNumber;
+		  String message = currentMessage.getDisplayMessageBody();
+
+		  mydb.insertSms(0, slot, message, date, 0, senderNum);
+		  } // end for loop
+		 
+	}
+}

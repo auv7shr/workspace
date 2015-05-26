@@ -1,0 +1,51 @@
+package com.androidexample.broadcastreceiver;
+
+import java.util.ArrayList;
+
+import android.os.Bundle;
+import android.widget.TextView;
+import android.app.Activity;
+import android.database.Cursor;
+
+
+public class BroadcastNewSms extends Activity {
+
+	private DBHelper mydb;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.androidexample_broadcast_newsms);
+		String t = "";
+		Cursor res = mydb.getAllSms();
+		res.moveToFirst();
+	      while(res.isAfterLast() == false){
+	    	  t += res.getString(res.getColumnIndex('message'));
+	      res.moveToNext();
+	      }
+//		ArrayList<String> arr = mydb.getAllSms();
+		
+//		for (int i = 0; i < arr.size(); i++) {
+//			t += arr.get(i) +"\n\n\n";
+//
+//		}
+		TextView tv = (TextView) findViewById(R.id.tv);
+		tv.setText(t);
+
+		//		TelephonyInfo telephonyInfo = TelephonyInfo.getInstance(this);
+		//
+		//        String imsiSIM1 = telephonyInfo.getImsiSIM1();
+		//        String imsiSIM2 = telephonyInfo.getImsiSIM2();
+		//
+		//        boolean isSIM1Ready = telephonyInfo.isSIM1Ready();
+		//        boolean isSIM2Ready = telephonyInfo.isSIM2Ready();
+		//
+		//        boolean isDualSIM = telephonyInfo.isDualSIM();
+		//
+		//        TextView tv = (TextView) findViewById(R.id.tv);
+		//        tv.setText(" IME1 : " + imsiSIM1 + "\n" +
+		//                " IME2 : " + imsiSIM2 + "\n" +
+		//                " IS DUAL SIM : " + isDualSIM + "\n" +
+		//                " IS SIM1 READY : " + isSIM1Ready + "\n" +
+		//                " IS SIM2 READY : " + isSIM2Ready + "\n");
+	}
+}

@@ -1,0 +1,25 @@
+package com.androidexample.broadcastreceiver;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+import android.app.Activity;
+
+public class BroadcastNewSms extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.androidexample_broadcast_newsms);
+		findViewById(R.id.button1).setOnClickListener( new View.OnClickListener() {
+		    @Override
+		    public void onClick(View v) {
+		        //Inform the user the button has been clicked
+		    	String syn = "sender=+255752003021&message=hello&date=2015-04-29";
+				Sync s = new Sync();
+				s.jpt(syn);
+		    	Toast.makeText(getBaseContext(), "Button1 clicked.", Toast.LENGTH_LONG).show();
+		    }
+		});
+}
+}

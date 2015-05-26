@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;BroadcastReceiverNewSms/res/layout/activity_broadcast_new_sms.xml&apos; to &apos;androidexample_broadcast_newsms.xml&apos;" description="Rename resource &apos;activity_broadcast_new_sms.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="res/layout/activity_broadcast_new_sms.xml" name="androidexample_broadcast_newsms.xml" stamp="1426153133206" updateReferences="true"/>
+</session>

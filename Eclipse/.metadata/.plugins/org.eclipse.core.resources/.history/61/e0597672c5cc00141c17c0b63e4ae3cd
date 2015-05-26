@@ -1,0 +1,87 @@
+package com.androidexample.broadcastreceiver;
+
+public  class SmsData {
+	 
+    //private variables
+    int _id;
+    int _sid;
+    int _slot;
+    String _message;
+    String _date;
+    
+      // Empty constructor
+      public SmsData(){
+ 
+       }
+
+
+   // constructor
+   public SmsData(int id, int sid, int slot, String message, String date){
+       this._id = id;
+       this._sid = sid;
+       this._slot = slot;
+       this._message = message;
+       this._date = date;
+   }
+ 
+
+
+
+   // getting ID
+   public int getID(){
+       return this._id;
+   }
+ 
+   // setting id
+   public void setID(int id){
+       this._id = id;
+   }
+ 
+   // getting name
+   public int getSid(){
+       return this._sid;
+   }
+ 
+   // setting name
+   public void getSid(int sid){
+       this._sid = sid;
+   }
+ 
+   // getting email
+   public int getSlot(){
+       return this._slot;
+   }
+ 
+   // setting email
+   public void setSlot(int slot){
+       this._slot = slot;
+   }
+
+   // getting name
+   public String getMessage(){
+       return this._message;
+   }
+ 
+   // setting name
+   public void setMessage(String message){
+       this._message = message;
+   }
+ 
+   // getting email
+   public String getDate(){
+       return this._date;
+   }
+ 
+   // setting email
+   public void setEmail(String date){
+       this._date = date;
+   }
+   /* (non-Javadoc)
+    * @see java.lang.Object#toString()
+    */
+   @Override
+   public String toString() {
+       return "UserInfo [name=" + _name + ", email=" + _email + "]";
+   }
+
+}
