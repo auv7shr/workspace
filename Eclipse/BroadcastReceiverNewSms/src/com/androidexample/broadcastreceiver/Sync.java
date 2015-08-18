@@ -10,10 +10,8 @@ import android.widget.Toast;
 
 public class Sync {
 	// URL to get JSON Array
-	// GATSWAY_2WAY_PUSH
-//	private static String baseurl = "http://www.rasello.com/API/GATSWAY_2WAY_PUSH.php?";
 	
-	// eid
+	// sbl
 	private static String baseurl = "http://cms.rasello.com/eid/pushSMS?";
 	private static String url = "";
 

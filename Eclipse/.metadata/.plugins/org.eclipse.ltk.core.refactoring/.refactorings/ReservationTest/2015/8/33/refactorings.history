@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;Reservation/src/com.androidexample.reservation&apos;&#x0A;- Original project: &apos;ReservationTest&apos;&#x0A;- Destination element: &apos;Reservation/src/com.androidexample.reservation&apos;&#x0A;- Original elements:&#x0A;     com.rasello.reservationtest.ExceptionHandler.java&#x0A;     com.rasello.reservationtest.AnotherActivity.java" description="Copy compilation units" destination="=Reservation/src&lt;com.androidexample.reservation" element1="/src&lt;com.rasello.reservationtest{ExceptionHandler.java" element2="/src&lt;com.rasello.reservationtest{AnotherActivity.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1439472193524" units="2" version="1.0"/>
+</session>

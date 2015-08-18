@@ -17,6 +17,13 @@
 		<item value="true" key="ResolveInstallWithAllSites"/>
 		<item value="450" key="AvailableNameColumnWidth"/>
 	</section>
+	<section name="org.eclipse.equinox.internal.p2.ui.dialogs.UninstallWizard.WizardSettings">
+		<item value="525" key="DIALOG_WIDTH"/>
+		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
+		<item value="478" key="DIALOG_HEIGHT"/>
+		<item value="82" key="DIALOG_X_ORIGIN"/>
+		<item value="48" key="DIALOG_Y_ORIGIN"/>
+	</section>
 	<section name="org.eclipse.equinox.internal.p2.ui.dialogs.InstallWizard.ResolutionResultsPage">
 		<item value="200" key="DetailsSashWeight"/>
 		<item value="360" key="NameColumnWidth"/>

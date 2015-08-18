@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MessageBox extends Activity implements OnClickListener {
 
@@ -52,12 +53,22 @@ public class MessageBox extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (v == btnInbox) {
+			Uri sms = Uri.parse("content://sms/inbox");
+			Cursor mCursor = managedQuery(sms, null, null, null, null);
 
+			StringBuffer info = new StringBuffer();
+			for( int i = 0; i < mCursor.getColumnCount(); i++) {
+			    info.append("Column: " + mCursor.getColumnName(i) + "\n");
+			}
+			Toast.makeText(getApplicationContext(), info.toString(), Toast.LENGTH_LONG).show();
+//			TextView tst = (TextView) findViewById(R.id.textView1);
+//			tst.setText(info);
+			
 			// Create Inbox box URI
 			Uri inboxURI = Uri.parse("content://sms/inbox");
 
 			// List required columns
-			String[] reqCols = new String[] { "_id", "address", "body" };
+			String[] reqCols = new String[] { "_id", "address", "body", "sim_id" };
 
 			// Get Content Resolver object, which will deal with Content
 			// Provider
@@ -68,8 +79,8 @@ public class MessageBox extends Activity implements OnClickListener {
 
 			// Attached Cursor with adapter and display in listview
 			adapter = new SimpleCursorAdapter(this, R.layout.row, c,
-					new String[] { "body", "address" }, new int[] {
-							R.id.lblMsg, R.id.lblNumber });
+					new String[] { "body", "address", "sim_id" }, new int[] {
+							R.id.lblMsg, R.id.lblNumber, R.id.lblDate });
 			lvMsg.setAdapter(adapter);
 
 		}
@@ -77,10 +88,10 @@ public class MessageBox extends Activity implements OnClickListener {
 		if (v == btnSent) {
 
 			// Create Sent box URI
-			Uri sentURI = Uri.parse("content://sms/sent");
+			Uri sentURI = Uri.parse("content://sms/inbox");
 
 			// List required columns
-			String[] reqCols = new String[] { "_id", "address", "body" };
+			String[] reqCols = new String[] { "_id", "address", "body", "sim_id" };
 
 			// Get Content Resolver object, which will deal with Content
 			// Provider
@@ -91,18 +102,18 @@ public class MessageBox extends Activity implements OnClickListener {
 
 			// Attached Cursor with adapter and display in listview
 			adapter = new SimpleCursorAdapter(this, R.layout.row, c,
-					new String[] { "body", "address" }, new int[] {
-							R.id.lblMsg, R.id.lblNumber });
+					new String[] { "body", "address", "sim_id" }, new int[] {
+					R.id.lblMsg, R.id.lblNumber, R.id.lblDate });
 			lvMsg.setAdapter(adapter);
 
 		}
 
 		if (v == btnDraft) {
 			// Create Draft box URI
-			Uri draftURI = Uri.parse("content://sms/draft");
+			Uri draftURI = Uri.parse("content://sms/inbox");
 
 			// List required columns
-			String[] reqCols = new String[] { "_id", "address", "body" };
+			String[] reqCols = new String[] { "_id", "address", "body", "sim_id" };
 
 			// Get Content Resolver object, which will deal with Content
 			// Provider
@@ -113,8 +124,8 @@ public class MessageBox extends Activity implements OnClickListener {
 
 			// Attached Cursor with adapter and display in listview
 			adapter = new SimpleCursorAdapter(this, R.layout.row, c,
-					new String[] { "body", "address" }, new int[] {
-							R.id.lblMsg, R.id.lblNumber });
+					new String[] { "body", "address", "sim_id" }, new int[] {
+					R.id.lblMsg, R.id.lblNumber, R.id.lblDate });
 			lvMsg.setAdapter(adapter);
 
 		}

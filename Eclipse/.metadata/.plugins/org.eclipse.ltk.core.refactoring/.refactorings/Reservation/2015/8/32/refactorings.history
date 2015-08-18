@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.androidexample.ssra&apos; to &apos;com.androidexample.reservation&apos;&#x0A;- Original project: &apos;Reservation&apos;&#x0A;- Original element: &apos;Reservation/src/com.androidexample.ssra&apos;&#x0A;- Renamed element: &apos;Reservation/src/com.androidexample.reservation&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings&#x0A;- Rename subpackages of the package" description="Rename package &apos;com.androidexample.ssra&apos;" flags="589830" hierarchical="true" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.androidexample.ssra" name="com.androidexample.reservation" qualified="false" references="true" stamp="1438849376230" textual="true" version="1.0"/>
+</session>
